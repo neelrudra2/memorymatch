@@ -1,4 +1,3 @@
-// constants/gameData.js
 export const CARD_PAIRS = [
   { id: 1, emoji: "🌟" },
   { id: 2, emoji: "🎨" },

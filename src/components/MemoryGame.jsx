@@ -1,4 +1,3 @@
-// components/MemoryGame.jsx
 import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -36,7 +35,7 @@ const MemoryGame = () => {
   useEffect(() => {
     if (matched.length === CARD_PAIRS.length * 2) {
       setShowCongratsDialog(true);
-      saveScore(); // Save score when game completes
+      saveScore();
     }
   }, [matched]);
 
@@ -82,7 +81,6 @@ const MemoryGame = () => {
         setMatched(newMatched);
         setFlipped([]);
 
-        // Check if game is complete
         if (newMatched.length === CARD_PAIRS.length * 2) {
           setShowCongratsDialog(true);
         }
@@ -108,7 +106,6 @@ const MemoryGame = () => {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push(newScore);
 
-    // Sort by moves first, then by time
     leaderboard.sort((a, b) => {
       if (a.moves === b.moves) {
         return a.timeElapsed - b.timeElapsed;
@@ -116,12 +113,10 @@ const MemoryGame = () => {
       return a.moves - b.moves;
     });
 
-    // Keep only top 10 scores
     leaderboard = leaderboard.slice(0, 10);
 
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 
-    // Send data to Google Sheets
     fetch(
       "https://script.google.com/macros/s/AKfycbweg8ZF-y0t14GXr4Gy85oCPeY1125qEA6Xtk81eltirQsDHfVg3p0XPofVoxqNvGDe/exec",
       {

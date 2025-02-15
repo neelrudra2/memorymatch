@@ -1,4 +1,3 @@
-// components/CongratsDialog.jsx
 import {
   Dialog,
   DialogContent,
